@@ -19,7 +19,7 @@
       label: "Public IP"
       description: "Public IP/hostname where to bind to"
       type: "string"
-      default: "localhost"
+      default: "0.0.0.0"
       required: true
 elasticsearch-masters:
   metadata:

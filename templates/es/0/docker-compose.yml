@@ -94,7 +94,6 @@ elasticsearch-base-clients:
   entrypoint:
     - /opt/rancher/bin/run.sh
 
-
 kopf:
   image: rancher/kopf:v0.4.0
   ports:
