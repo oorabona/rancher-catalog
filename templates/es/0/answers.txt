@@ -1,0 +1,3 @@
+cluster_name=es
+kopf_port=80
+public_ip=localhost
