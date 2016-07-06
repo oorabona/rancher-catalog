@@ -8,6 +8,16 @@
       type: "string"
       default: "/srv"
       required: true
+    - variable: "tcp_port_range"
+      label: "TCP port range to allocate for logstash"
+      type: "string"
+      default: "20000-21000"
+      required: true
+    - variable: "udp_port_range"
+      label: "UDP port range to allocate for logstash"
+      type: "string"
+      default: "20000-21000"
+      required: true
     - variable: "collector_inputs"
       description: |
         Logstash collection tier inputs. These will be added
