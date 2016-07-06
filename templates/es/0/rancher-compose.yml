@@ -15,6 +15,11 @@
       type: "int"
       default: 80
       required: true
+    - variable: "base_dir"
+      label: "Base directory for es stuff"
+      type: "string"
+      default: "/srv"
+      required: true
 elasticsearch-masters:
   metadata:
     elasticsearch:
