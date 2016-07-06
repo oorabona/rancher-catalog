@@ -9,7 +9,7 @@ logstash-indexer-config:
   restart: always
   image: rancher/logstash-config:v0.2.0
   volumes:
-    - "${base_dir}/logstash:/etc/logstash"
+    - "${base_dir}/logstash:/etc/logstash:ro"
   labels:
     io.rancher.container.hostname_override: container_name
 logstash-indexer:
@@ -34,7 +34,7 @@ logstash-collector-config:
   restart: always
   image: rancher/logstash-config:v0.2.0
   volumes:
-    - "${base_dir}/logstash:/etc/logstash"
+    - "${base_dir}/logstash:/etc/logstash:ro"
   labels:
     io.rancher.container.hostname_override: container_name
 logstash-collector:
