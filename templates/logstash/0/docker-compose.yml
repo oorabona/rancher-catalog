@@ -41,8 +41,8 @@ logstash-collector:
   links:
   - redis:redis
   ports:
-  - "${udp_port_range}/udp"
-  - "${tcp_port_range}/tcp"
+  - "${udp_port_range}:${udp_port_range}/udp"
+  - "${tcp_port_range}:${tcp_port_range}/tcp"
   volumes_from:
   - logstash-collector-config
   command:
