@@ -1,0 +1,5 @@
+name: Logstash 2.x (latest)
+description: |
+  Centralize data processing of all types
+version: latest-rancher1-custom
+category: ELK
