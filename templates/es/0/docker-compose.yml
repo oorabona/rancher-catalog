@@ -15,12 +15,12 @@ elasticsearch-datavolume-masters:
     - ${base_dir}/es/config:/usr/share/elasticsearch/config
     - /opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
 elasticsearch-base-master:
   labels:
     elasticsearch.master.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
   net: "container:elasticsearch-masters"
   volumes_from:
     - elasticsearch-datavolume-masters
@@ -48,12 +48,12 @@ elasticsearch-datavolume-datanode:
     - ${base_dir}/es/config:/usr/share/elasticsearch/config
     - /opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
 elasticsearch-base-datanode:
   labels:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
   links:
     - elasticsearch-masters:es-masters
   entrypoint:
@@ -82,12 +82,12 @@ elasticsearch-datavolume-clients:
     - ${base_dir}/es/config:/usr/share/elasticsearch/config
     - /opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
 elasticsearch-base-clients:
   labels:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: catholabs/elastic-with-marvel
   volumes_from:
     - elasticsearch-datavolume-clients
   net: "container:elasticsearch-clients"
