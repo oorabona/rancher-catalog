@@ -1,0 +1,24 @@
+.catalog:
+  name: "nginx-rancher-rp"
+  version: "latest-custom"
+  description: "Automatic reverse proxy for your Web containers deployed in Rancher"
+  questions:
+    - variable: base_dir
+      description: "Base directory for configuration files."
+      label: "Base directory"
+      type: "string"
+      required: true
+      default: "/srv"
+    - variable: preferedHost
+      description: "Hostname affinity"
+      label: "Rancher reported node hostname"
+      type: "string"
+      required: true
+      default: "io.rancher.host.hostname=host"
+      
+# nginx-proxy:
+#   metadata:
+#     nginx:
+#       conf:
+#         servername: "kibana"
+#         upstream_port: 5601

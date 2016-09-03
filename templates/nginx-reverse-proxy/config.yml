@@ -1,0 +1,5 @@
+name: NGinx Reverse Proxy
+description: |
+  Reverse proxying made easy !
+version: latest
+category: Network
