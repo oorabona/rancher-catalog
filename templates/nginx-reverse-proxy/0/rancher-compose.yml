@@ -9,13 +9,13 @@
       type: "string"
       required: true
       default: "/srv"
-    - variable: preferedHost
+    - variable: affinity
       description: "Hostname affinity"
       label: "Rancher reported node hostname"
       type: "string"
       required: true
       default: "io.rancher.host.hostname=host"
-      
+
 # nginx-proxy:
 #   metadata:
 #     nginx:
