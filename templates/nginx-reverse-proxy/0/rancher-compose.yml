@@ -1,5 +1,5 @@
 .catalog:
-  name: "nginx-rancher-rp"
+  name: "nginx-reverse-proxy"
   version: "latest-custom"
   description: "Automatic reverse proxy for your Web containers deployed in Rancher"
   questions:
