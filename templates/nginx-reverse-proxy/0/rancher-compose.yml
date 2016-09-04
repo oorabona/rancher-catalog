@@ -15,7 +15,7 @@
       type: "string"
       required: true
       default: "io.rancher.host.hostname=host"
-    - variable: RANCHER_METADATA_HOST
+    - variable: rancher_host
       description: "Rancher Server Hostname"
       label: "Any resolvable URL"
       type: "string"
