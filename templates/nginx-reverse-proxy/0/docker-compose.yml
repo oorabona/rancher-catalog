@@ -1,4 +1,4 @@
-nginx-proxy:
+nginx:
   image: oorabona/nginx-rancher-rp
   labels:
     io.rancher.container.network: true
@@ -11,5 +11,5 @@ nginx-proxy:
    - "443:443"
   volumes:
     - '${base_dir}/certs:/etc/nginx/certs:ro'
-    - '${base_dir}/nginx/vhost.d:/etc/nginx/vhost.d'
+    - '${base_dir}/nginx/conf.d:/etc/nginx/conf.d'
     - '${base_dir}/nginx/html:/usr/share/nginx/html'
