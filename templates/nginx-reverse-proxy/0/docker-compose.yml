@@ -11,5 +11,5 @@ nginx:
    - "443:443"
   volumes:
     - '${base_dir}/certs:/etc/nginx/certs:ro'
-    - '${base_dir}/nginx/conf.d:/etc/nginx/conf.d'
+    - '${base_dir}/nginx/vhosts.d:/etc/nginx/vhosts.d'
     - '${base_dir}/nginx/html:/usr/share/nginx/html'
