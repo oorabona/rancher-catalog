@@ -11,4 +11,3 @@ nginx-proxy:
     - '${base_dir}/certs:/etc/nginx/certs:ro'
     - '${base_dir}/nginx/vhost.d:/etc/nginx/vhost.d'
     - '${base_dir}/nginx/html:/usr/share/nginx/html'
-    - '/var/run/docker.sock:/tmp/docker.sock:ro'

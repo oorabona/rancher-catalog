@@ -15,7 +15,12 @@
       type: "string"
       required: true
       default: "io.rancher.host.hostname=host"
-
+    - variable: RANCHER_METADATA_HOST
+      description: "Rancher Server Hostname"
+      label: "Any resolvable URL"
+      type: "string"
+      required: true
+      default: "http://rancher-metadata:8080"
 # nginx-proxy:
 #   metadata:
 #     nginx:
