@@ -10,14 +10,14 @@
       required: true
       default: "/srv"
     - variable: affinity
-      description: "Rancher reported node hostname"
-      label: "Hostname affinity"
+      description: "Rancher scheduler affinity, based on hosts labels!"
+      label: "Can be any key=value pair..."
       type: "string"
       required: true
-      default: "io.rancher.host.hostname=host"
+      default: "fq.label=value"
     - variable: rancher_host
       description: "Rancher Server Hostname"
-      label: "Any resolvable URL"
+      label: "URL of Rancher host"
       type: "string"
       required: true
       default: "http://rancher-metadata:8080"
