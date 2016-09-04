@@ -3,7 +3,7 @@ nginx-proxy:
   labels:
     io.rancher.container.network: true
     io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.affinity:host_label: ${affinity}
+    io.rancher.scheduler.affinity: ${affinity}
   environment:
     RANCHER_METADATA_HOST: ${rancher_host}
   ports:
