@@ -5,7 +5,7 @@ nginx-proxy:
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity: $${affinity}
   environment:
-    RANCHER_METADATA_HOST: $${rancher_host}
+    RANCHER_METADATA_HOST: ${rancher_host}
   ports:
    - "80:80"
    - "443:443"

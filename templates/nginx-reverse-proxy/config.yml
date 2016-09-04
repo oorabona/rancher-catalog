@@ -3,3 +3,6 @@ description: |
   Reverse proxying made easy !
 version: latest-custom
 category: Network
+maintainer: Olivier ORABONA (olivier.orabona@gmail.com)
+license: MIT
+projectURL: https://github.com/oorabona/nginx-reverse-proxy
