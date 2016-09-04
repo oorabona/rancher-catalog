@@ -1,5 +1,5 @@
-name: NGinx Reverse Proxy
+name: NginX Rancher Reverse Proxy
 description: |
   Reverse proxying made easy !
-version: latest
+version: latest-custom
 category: Network
