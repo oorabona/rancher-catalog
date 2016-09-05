@@ -10,20 +10,20 @@
       required: true
       default: "/srv"
     - variable: affinity
-      description: "Rancher scheduler affinity, based on hosts labels!"
-      label: "Can be any key=value pair..."
+      label: "Rancher scheduler affinity, based on hosts labels!"
+      description: "Can be any key=value pair..."
       type: "string"
       required: true
       default: "fq.label=value"
     - variable: rancher_host
-      description: "Rancher Server Hostname"
-      label: "URL of Rancher host"
+      label: "Rancher Server Hostname"
+      description: "URL of Rancher host"
       type: "string"
       required: true
       default: "http://rancher-metadata:8080"
     - variable: ip_field_policy
-      description: "Select which field in data.fields metadata should be the source of remote IP"
-      label: "Select among the supported possibilities"
+      label: "Select which field in data.fields metadata should be the source of remote IP"
+      description: "Select among the supported possibilities"
       type: "enum"
       default: primaryIpAddress
       options:
