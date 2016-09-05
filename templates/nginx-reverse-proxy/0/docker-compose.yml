@@ -6,6 +6,7 @@ nginx:
     io.rancher.scheduler.affinity:host_label: ${affinity}
   environment:
     RANCHER_METADATA_HOST: ${rancher_host}
+    IP_FIELD: ${ip_field_policy}
   ports:
    - "80:80"
    - "443:443"

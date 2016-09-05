@@ -21,9 +21,11 @@
       type: "string"
       required: true
       default: "http://rancher-metadata:8080"
-# nginx-proxy:
-#   metadata:
-#     nginx:
-#       conf:
-#         servername: "kibana"
-#         upstream_port: 5601
+    - variable: ip_field_policy
+      description: "Select which field in data.fields metadata should be the source of remote IP"
+      label: "Select among the supported possibilities"
+      type: "enum"
+      default: primaryIpAddress
+      options:
+        - dockerIp
+        - primaryIpAddress
