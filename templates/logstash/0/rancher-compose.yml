@@ -1,91 +1,32 @@
 .catalog:
   name: "Logstash"
-  version: "latest-rancher1-custom"
+  version: "2.3.3-custom"
   description: "Logstash: Process Any Data, From Any Source"
   questions:
-    - variable: "base_dir"
-      label: "Base directory for configuration"
+    - variable: "configs"
+      description: |
+        List of configuration (sub-) directories to load (must be under /etc/logstash/conf.d/).
+      label: "Logstash configurations to load (*=all, otherwise space-separated)"
       type: "string"
+      required: true
+      default: "*"
+    - variable: base_dir
+      description: "Base directory for configuration files."
+      label: "Base directory"
+      type: "string"
+      required: true
       default: "/srv"
-      required: true
-    - variable: "tcp_port_range"
-      label: "TCP port range to allocate for logstash"
-      type: "string"
-      default: "20000-21000"
-      required: true
     - variable: "udp_port_range"
-      label: "UDP port range to allocate for logstash"
+      description: |
+        UDP port range (low-high)
+      label: "Can also be a single port"
       type: "string"
-      default: "20000-21000"
       required: true
-    - variable: "collector_inputs"
+      default: "514-5140"
+    - variable: "tcp_port_range"
       description: |
-        Logstash collection tier inputs. These will be added
-        directly to input { } section of logstash.conf
-      label: "Logstash inputs"
-      type: "multiline"
+        TCP port range (low-high)
+      label: "Can also be a single port"
+      type: "string"
       required: true
-      default: |
-        udp {
-          port => 5000
-          codec => "json"
-        }
-        tcp {
-          port => 6000
-          codec => "json"
-        }
-    - variable: "indexer_filters"
-      description: |
-        Logstash indexing tier filters. These will be added
-        directly to filter { } section of logstash.conf
-      label: "Logstash filters"
-      type: "multiline"
-      required: false
-      default: ""
-    - variable: "indexer_outputs"
-      description: |
-        Logstash indexing tier outputs. These will be added
-        directly to output { } section of logstash.conf
-      label: "Logstash outputs"
-      type: "multiline"
-      required: true
-      default: |
-        elasticsearch {
-          host => "elasticsearch"
-          protocol => "http"
-          index => "logstash-%{+YYYY.MM.dd}"
-        }
-    - variable: "elasticsearch_link"
-      description: |
-        stack/service link or external service link to elasticsearch
-        cluster.
-      label: "Elasticsearch stack/service"
-      default: "es/elasticsearch-clients"
-      required: true
-      type: "service"
-logstash-indexer:
-  metadata:
-    logstash:
-      inputs: |
-        redis {
-          host => "redis"
-          port => "6379"
-          data_type => "list"
-          key => "logstash"
-        }
-      filters: |
-        ${indexer_filters}
-      outputs: |
-        ${indexer_outputs}
-logstash-collector:
-  metadata:
-    logstash:
-      inputs: |
-        ${collector_inputs}
-      outputs: |
-        redis {
-          host => "redis"
-          port => "6379"
-          data_type => "list"
-          key => "logstash"
-        }
+      default: "514-5140"
