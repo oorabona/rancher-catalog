@@ -1,0 +1,13 @@
+kibana:
+  restart: always
+  tty: true
+  image: kibana:4.5
+  stdin_open: true
+  environment:
+    VIRTUAL_HOST: "${kibana_fqdn}"
+    VIRTUAL_PORT: "${kibana_port}"
+    ELASTICSEARCH_URL: "http://clients.elasticsearch:9200"
+  ports:
+    - ${kibana_port}:5601
+  labels:
+    io.rancher.container.hostname_override: container_name

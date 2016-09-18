@@ -1,0 +1,17 @@
+.catalog:
+  name: "Kibana"
+  version: "4.5-rancher1-custom"
+  description: "Kibana: Explore & Visualize Your Data"
+  questions:
+    - variable: "kibana_port"
+      label: "Public Port"
+      description: "Unique public port for Kibana"
+      type: "int"
+      default: 80
+      required: true
+    - variable: "kibana_fqdn"
+      description: "Nginx Reverse Proxy FQDN for Kibana Web Interface"
+      label: "Kibana FQDN"
+      type: "string"
+      required: true
+      default: "kibana.domain.name"
