@@ -1,26 +1,40 @@
 .catalog:
   name: "Elasticsearch"
-  version: "2.2.2-rancher1-custom"
+  version: "2.4-rancher1-custom"
   description: "Elasticsearch. You know, for search"
   questions:
+    - variable: base_dir
+      description: "Base directory for configuration files."
+      label: "Base directory"
+      type: "string"
+      required: true
+      default: "/srv"
     - variable: cluster_name
       description: "Unique name to assign to your Elasticsearch cluster."
       label: "Cluster Name"
       type: "string"
       required: true
       default: "es"
-    - variable: "kopf_port"
-      label: "Public Port"
-      description: "Unique public port for kopf"
-      type: "int"
-      default: 80
-      required: true
-    - variable: "base_dir"
-      label: "Base directory for es stuff"
+    - variable: "kopf_fqdn"
+      description: "Nginx Reverse Proxy FQDN for Kopf Web Interface"
+      label: "Kopf FQDN"
       type: "string"
-      default: "/srv"
       required: true
-elasticsearch-masters:
+      default: "kopf.domain.name"
+    - variable: affinity
+      label: "Rancher scheduler affinity, based on hosts labels MUST NOT!"
+      description: "Can be any key=value pair..."
+      type: "string"
+      required: true
+      default: "com.domain.=value"
+    - variable: datanodes_scale
+      label: "Number of datanodes for this ES cluster"
+      description: "Must be lower than # of Rancher nodes"
+      type: "int"
+      required: true
+      default: 3
+
+masters:
   metadata:
     elasticsearch:
       yml:
@@ -29,7 +43,8 @@ elasticsearch-masters:
         node.data: "false"
         node.master: "true"
         network.host: "_site_"
-elasticsearch-datanodes:
+datanodes:
+  scale: ${datanodes_scale}
   metadata:
     elasticsearch:
       yml:
@@ -37,9 +52,9 @@ elasticsearch-datanodes:
         node.name: "$${HOSTNAME}"
         node.data: "true"
         node.master: "false"
-        http.enabled: "false"
+        http.enabled: "true"
         network.host: "_site_"
-elasticsearch-clients:
+clients:
   metadata:
     elasticsearch:
       yml:
