@@ -12,7 +12,7 @@ logstash:
   - ${base_dir}/logstash/templates:/etc/logstash/templates/:ro
   - ${base_dir}/logstash/patterns:/etc/logstash/patterns/:ro
   command:
-  - -w 1
+  - ${commandline}
   image: oorabona/logstash:2.3.3
   stdin_open: true
   labels:

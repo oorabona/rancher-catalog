@@ -16,17 +16,23 @@
       type: "string"
       required: true
       default: "/srv"
+    - variable: commandline
+      label: "Extra commandline arguments"
+      description: "Please refer to logstash documentation if needed."
+      type: "string"
+      required: true
+      default: "-w 1"
     - variable: "udp_port_range"
-      description: |
+      label: |
         UDP port range (low-high)
-      label: "Can also be a single port"
+      description: "Can also be a single port"
       type: "string"
       required: true
       default: "514-5140"
     - variable: "tcp_port_range"
-      description: |
+      label: |
         TCP port range (low-high)
-      label: "Can also be a single port"
+      description: "Can also be a single port"
       type: "string"
       required: true
       default: "514-5140"
