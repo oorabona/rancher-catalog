@@ -11,7 +11,7 @@ sslh:
     HTTPS_PORT: ${https_port}
   image: oorabona/sslh
   ports:
-    - "${listen_port}:443"
+    - "${listen_hostport}:443"
   command:
     - -f
   labels:
