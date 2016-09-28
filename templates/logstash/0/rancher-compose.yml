@@ -3,6 +3,12 @@
   version: "2.3.3-custom"
   description: "Logstash: Process Any Data, From Any Source"
   questions:
+    - variable: affinity
+      label: "Rancher scheduler affinity, based on hosts labels MUST NOT!"
+      description: "Can be any key=value pair..."
+      type: "string"
+      required: true
+      default: "com.domain.=value"
     - variable: "configs"
       description: |
         List of configuration (sub-) directories to load (must be under /etc/logstash/conf.d/).
