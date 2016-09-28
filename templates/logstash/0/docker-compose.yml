@@ -3,9 +3,6 @@ logstash:
   tty: true
   environment:
     CONFD_SUBDIRS: ${configs}
-  ports:
-  - "${udp_port_range}:${udp_port_range}/udp"
-  - "${tcp_port_range}:${tcp_port_range}/tcp"
   volumes:
   - ${base_dir}/logstash/conf.d:/etc/logstash/conf.d/:ro
   - ${base_dir}/logstash/geoip:/etc/logstash/geoip/:ro

@@ -28,17 +28,3 @@
       type: "string"
       required: true
       default: "-w 1"
-    - variable: "udp_port_range"
-      label: |
-        UDP port range (low-high)
-      description: "Can also be a single port"
-      type: "string"
-      required: true
-      default: "514-5140"
-    - variable: "tcp_port_range"
-      label: |
-        TCP port range (low-high)
-      description: "Can also be a single port"
-      type: "string"
-      required: true
-      default: "514-5140"
