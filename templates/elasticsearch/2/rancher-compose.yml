@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "1-latest-custom"
+  version: "2-latest-custom"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: base_dir
