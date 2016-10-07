@@ -72,7 +72,7 @@ base-datanode:
   net: "container:datanodes"
 
 clients:
-  image: agefospme/elasticsearch-conf
+  image: oorabona/elasticsearch-conf
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-clients,datavolume-clients
@@ -89,7 +89,6 @@ datavolume-clients:
   volumes:
     - ${base_dir}/elasticsearch/client/data:/usr/share/elasticsearch/data
     - ${base_dir}/elasticsearch/client/config:/usr/share/elasticsearch/config
-    - ${base_dir}/elasticsearch/client/plugins:/usr/share/elasticsearch/plugins
     - /opt/rancher/bin
   entrypoint: /bin/true
   image: elasticsearch:2.3
