@@ -26,7 +26,7 @@
       description: "Can be any key=value pair..."
       type: "string"
       required: true
-      default: "com.agefos.=value"
+      default: "fq.dn.=value"
     - variable: datanodes_scale
       label: "Number of datanodes for this ES cluster"
       description: "Must be lower than # of Rancher nodes"
