@@ -1,5 +1,5 @@
 masters:
-  image: agefospme/elasticsearch-conf
+  image: oorabona/elasticsearch-conf
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-master,datavolume-masters
@@ -35,7 +35,7 @@ base-master:
     - /opt/rancher/bin/run.sh
 
 datanodes:
-  image: agefospme/elasticsearch-conf
+  image: oorabona/elasticsearch-conf
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-datanode,datavolume-datanode
@@ -72,7 +72,7 @@ base-datanode:
   net: "container:datanodes"
 
 clients:
-  image: agefospme/elasticsearch-conf
+  image: oorabona/elasticsearch-conf
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-clients,datavolume-clients
@@ -115,7 +115,7 @@ kopf:
     TZ: "${tz}"
     VIRTUAL_HOST: "${kopf_fqdn}"
     VIRTUAL_PORT: "80"
-    KOPF_SERVER_NAME: 'es.dev'
+    KOPF_SERVER_NAME: '${kopf_fqdn}'
     KOPF_ES_SERVERS: 'clients.elasticsearch:9200'
   labels:
     io.rancher.container.hostname_override: container_name
