@@ -1,7 +1,7 @@
 kibana:
   restart: always
   tty: true
-  image: kibana:4.5
+  image: kibana:4
   stdin_open: true
   environment:
     VIRTUAL_HOST: "${kibana_fqdn}"

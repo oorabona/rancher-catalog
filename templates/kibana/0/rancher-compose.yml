@@ -1,6 +1,6 @@
 .catalog:
   name: "Kibana"
-  version: "4.5-rancher1-custom"
+  version: "4-latest-custom"
   description: "Kibana: Explore & Visualize Your Data"
   questions:
     - variable: "kibana_port"

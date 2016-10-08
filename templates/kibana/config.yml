@@ -1,5 +1,5 @@
-name: Kibana 4.5
+name: Kibana 4.x
 description: |
   Visualization dashboard
-version: 4.5-rancher1-custom
+version: 4-latest-custom
 category: ELK
