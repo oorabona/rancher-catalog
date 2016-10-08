@@ -101,6 +101,7 @@ base-clients:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
+    io.rancher.host.external_dns_ip: ${external_dns_ip}
   image: elasticsearch:2
   volumes_from:
     - datavolume-clients
