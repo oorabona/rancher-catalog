@@ -20,7 +20,7 @@
       label: "Kopf FQDN"
       type: "string"
       required: true
-      default: "kopf.services.agefos-pme.intra"
+      default: "kopf.services.lan"
     - variable: affinity
       label: "Rancher scheduler affinity, based on hosts labels MUST NOT!"
       description: "Can be any key=value pair..."
