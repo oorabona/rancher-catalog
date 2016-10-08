@@ -106,6 +106,8 @@ base-clients:
   net: "container:clients"
   entrypoint:
     - sh
+    - -c
+  command:
     - /opt/rancher/bin/run.sh
 
 # kopf:
