@@ -29,7 +29,7 @@
       default: "fq.dn.=value"
     - variable: datanodes_scale
       label: "Number of datanodes for this ES cluster"
-      description: "Must be lower than # of Rancher nodes"
+      description: "Must be equal or less than the number of Rancher nodes"
       type: "int"
       required: true
       default: 3
