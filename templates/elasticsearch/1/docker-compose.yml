@@ -105,7 +105,6 @@ base-clients:
     - datavolume-clients
   net: "container:clients"
   entrypoint:
-    - sh
     - /opt/rancher/bin/run.sh
 
 # kopf:
