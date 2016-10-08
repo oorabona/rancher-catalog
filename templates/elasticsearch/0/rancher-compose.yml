@@ -33,6 +33,12 @@
       type: "int"
       required: true
       default: 3
+    - variable: external_dns_ip
+      label: "External DNS IP (optional)"
+      description: "Enter IP x.x.x.x"
+      type: "string"
+      required: false
+      default: "x.x.x.x"
     - variable: "tz"
       description: "Timezone"
       label: "Timezone"
