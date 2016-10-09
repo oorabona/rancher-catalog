@@ -4,6 +4,7 @@ masters:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-master,datavolume-masters
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
+    io.rancher.host.external_dns_ip: ${external_dns_ip}
   volumes_from:
     - datavolume-masters
 
@@ -26,7 +27,6 @@ base-master:
     elasticsearch.master.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
-    io.rancher.host.external_dns_ip: ${external_dns_ip}
   image: elasticsearch:2.3
   net: "container:masters"
   volumes_from:
@@ -42,6 +42,7 @@ datanodes:
     io.rancher.sidekicks: base-datanode,datavolume-datanode
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
+    io.rancher.host.external_dns_ip: ${external_dns_ip}
   volumes_from:
     - datavolume-datanode
 
@@ -64,7 +65,6 @@ base-datanode:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
-    io.rancher.host.external_dns_ip: ${external_dns_ip}
   image: elasticsearch:2.3
   entrypoint:
     - sh
@@ -79,6 +79,7 @@ clients:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: base-clients,datavolume-clients
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
+    io.rancher.host.external_dns_ip: ${external_dns_ip}
   volumes_from:
     - datavolume-clients
 
@@ -102,7 +103,6 @@ base-clients:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label_ne: ${affinity}
-    io.rancher.host.external_dns_ip: ${external_dns_ip}
   image: elasticsearch:2.3
   volumes_from:
     - datavolume-clients
