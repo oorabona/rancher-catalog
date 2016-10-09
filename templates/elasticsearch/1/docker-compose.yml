@@ -33,6 +33,8 @@ base-master:
     - datavolume-masters
   entrypoint:
     - sh
+    - -c
+  command:
     - /opt/rancher/bin/run.sh
 
 datanodes:
@@ -68,6 +70,8 @@ base-datanode:
   image: elasticsearch:2.3
   entrypoint:
     - sh
+    - -c
+  command:
     - /opt/rancher/bin/run.sh
   volumes_from:
     - datavolume-datanode
