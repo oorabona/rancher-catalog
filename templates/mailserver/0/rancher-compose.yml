@@ -22,6 +22,11 @@
       type: "string"
       required: true
       default: "galera-lb"
+    - variable: "db_passwd"
+      description: "MariaDB password"
+      label: "MariaDB password"
+      type: "string"
+      required: true
     - variable: affinity
       label: "Rancher scheduler affinity, based on hosts labels MUST!"
       description: "Can be any key=value pair..."
