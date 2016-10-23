@@ -1,0 +1,8 @@
+name: Mailserver All-In-One with Web interface
+description: |
+  Mail server (IMAPS, etc) with Postfix and Rainloop as the web interface
+version: latest-custom
+category: Network
+maintainer: Olivier ORABONA (olivier.orabona@gmail.com)
+license: MIT
+projectURL: https://github.com/oorabona/rancher-catalog/

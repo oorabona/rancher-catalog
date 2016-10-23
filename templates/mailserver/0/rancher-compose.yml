@@ -1,0 +1,30 @@
+.catalog:
+  name: "Mailserver"
+  version: "latest-custom"
+  description: |
+    Mail server (IMAPS, etc) with Postfix and Rainloop as the web interface
+  questions:
+    - variable: base_dir
+      description: "Base directory for configuration files."
+      label: "Base directory"
+      type: "string"
+      required: true
+      default: "/srv"
+    - variable: "domain_name"
+      description: "Domain name for mail server"
+      label: "Postfix FQDN"
+      type: "string"
+      required: true
+      default: "mail.domain.name"
+    - variable: "db_host"
+      description: "MariaDB host or IP"
+      label: "MariaDB host or IP"
+      type: "string"
+      required: true
+      default: "galera-lb"
+    - variable: affinity
+      label: "Rancher scheduler affinity, based on hosts labels MUST!"
+      description: "Can be any key=value pair..."
+      type: "string"
+      required: true
+      default: "fq.dn.=value"

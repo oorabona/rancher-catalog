@@ -1,0 +1,57 @@
+mailserver:
+  image: hardware/mailserver
+  container_name: mailserver
+  domainname: ${domain_name}                # Mail server FQDN & reverse = mail.domain.tld.
+  hostname: mail
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${affinity}
+  extra_hosts:
+    - "mariadb:${db_host}"
+  ports:
+    - "25:25"     # SMTP                - Required
+  # - "110:110"   # POP3       STARTTLS - Optional - For webmails/desktop clients
+    - "143:143"   # IMAP       STARTTLS - Optional - For webmails/desktop clients
+  # - "465:465"   # SMTPS      SSL/TLS  - Optional - Enabled for compatibility reason, otherwise disabled
+    - "587:587"   # Submission STARTTLS - Optional - For webmails/desktop clients
+    - "993:993"   # IMAPS      SSL/TLS  - Optional - For webmails/desktop clients
+  # - "995:995"   # POP3S      SSL/TLS  - Optional - For webmails/desktop clients
+    - "4190:4190" # SIEVE      STARTTLS - Optional - Recommended for mail filtering
+  environment:
+    - DBPASS=xxxxxxx
+  # - ENABLE_POP3=true          # Enable POP3 protocol
+  # - ENABLE_POSTGREY=true      # Enable greylisting policy server
+  # - DISABLE_CLAMAV=true       # Disable virus scanning
+  # - DISABLE_SPAMASSASSIN=true # Disable SPAM checking
+  # - DISABLE_SIEVE=true        # Disable ManageSieve protocol
+  volumes:
+    - ${base_dir}/mail/mail:/var/mail
+    - ${base_dir}/mail/opendkim:/etc/opendkim/keys
+    - ${base_dir}/nginx/certs:/etc/letsencrypt
+
+
+# Control panel
+postfixadmin:
+  image: hardware/postfixadmin
+  container_name: postfixadmin
+  domainname: ${domain_name}
+  hostname: mail
+  links:
+    - mailserver:mailserver
+  extra_hosts:
+    - "mariadb:${db_host}"
+  environment:
+    - DBPASS=${db_passwd}
+
+# Webmail
+rainloop:
+  image: hardware/rainloop
+  container_name: rainloop
+  environment:
+    VIRTUAL_HOST: rainloop
+    VIRTUAL_PORT: 8000
+  links:
+    - mailserver:mailserver
+  extra_hosts:
+    - "mariadb:${db_host}"
+  volumes:
+    - ${base_dir}/rainloop:/rainloop/data
