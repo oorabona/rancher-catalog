@@ -1,2 +1,8 @@
+.catalog:
+  name: "MongoDB"
+  version: "3-custom"
+  description: |
+    MongoDB Replica Set.
+
 mongo-cluster:
   scale: 3
