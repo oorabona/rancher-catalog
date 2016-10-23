@@ -47,7 +47,7 @@ rainloop:
   image: hardware/rainloop
   container_name: rainloop
   environment:
-    VIRTUAL_HOST: rainloop
+    VIRTUAL_HOST: ${rainloop_fqdn}
     VIRTUAL_PORT: 8000
   links:
     - mailserver:mailserver

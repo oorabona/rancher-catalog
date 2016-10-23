@@ -27,6 +27,12 @@
       label: "MariaDB password"
       type: "string"
       required: true
+    - variable: "rainloop_fqdn"
+      description: "Nginx Reverse Proxy FQDN for Rainloop Web Interface"
+      label: "Rainloop FQDN"
+      type: "string"
+      required: true
+      default: "rainloop.domain.name"
     - variable: affinity
       label: "Rancher scheduler affinity, based on hosts labels MUST!"
       description: "Can be any key=value pair..."
