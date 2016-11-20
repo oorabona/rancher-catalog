@@ -1,4 +1,5 @@
 mailserver:
+  restart: always
   image: hardware/mailserver
   container_name: mailserver
   domainname: ${domain_name}                # Mail server FQDN & reverse = mail.domain.tld.
@@ -44,6 +45,7 @@ postfixadmin:
 
 # Webmail
 rainloop:
+  restart: always
   image: hardware/rainloop
   container_name: rainloop
   environment:
