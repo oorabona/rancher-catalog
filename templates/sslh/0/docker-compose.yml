@@ -1,5 +1,5 @@
 sslh:
-  restart: until-stopped
+  restart: always
   environment:
     LISTEN_IP: 0.0.0.0
     LISTEN_PORT: 443
