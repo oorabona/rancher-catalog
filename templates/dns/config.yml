@@ -1,0 +1,5 @@
+name: DNS
+description: |
+  Provides Domain Name System services (with Web Management interface)
+version: latest-web-custom
+category: Network

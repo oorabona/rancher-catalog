@@ -1,0 +1,24 @@
+.catalog:
+  name: "DNS"
+  version: "latest-web-custom"
+  description: |
+    Provides Domain Name System services (with Web Management interface)
+  questions:
+    - variable: base_dir
+      description: "Base directory for configuration files."
+      label: "Base directory"
+      type: "string"
+      required: true
+      default: "/srv"
+    - variable: web_fqdn
+      description: "Web interface FQDN"
+      label: "DNS Domain"
+      type: "string"
+      required: true
+      default: "dns.tld"
+    - variable: affinity
+      label: "Rancher scheduler affinity, based on hosts labels MUST!"
+      description: "Can be any key=value pair..."
+      type: "string"
+      required: true
+      default: "fq.dn.=value"
