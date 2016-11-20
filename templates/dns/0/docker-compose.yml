@@ -11,5 +11,5 @@ bind:
     - "53:53/udp"
     - "10000:10000/tcp"
   volumes:
-    - ${base_dir}/configuration/bind:/data
+    - ${base_dir}/bind:/data
   restart: always
