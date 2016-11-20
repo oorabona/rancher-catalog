@@ -3,7 +3,7 @@ bind:
   container_name: bind
   labels:
     io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.affinity:host_label_ne: ${affinity}
+    io.rancher.scheduler.affinity:host_label: ${affinity}
   environment:
     VIRTUAL_HOST: "${web_fqdn}"
     VIRTUAL_PORT: 10000
