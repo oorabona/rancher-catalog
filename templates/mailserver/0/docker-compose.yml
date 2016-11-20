@@ -9,15 +9,15 @@ mailserver:
     - "mariadb:${db_host}"
   ports:
     - "25:25"     # SMTP                - Required
-  # - "110:110"   # POP3       STARTTLS - Optional - For webmails/desktop clients
+    - "110:110"   # POP3       STARTTLS - Optional - For webmails/desktop clients
     - "143:143"   # IMAP       STARTTLS - Optional - For webmails/desktop clients
-  # - "465:465"   # SMTPS      SSL/TLS  - Optional - Enabled for compatibility reason, otherwise disabled
+    - "465:465"   # SMTPS      SSL/TLS  - Optional - Enabled for compatibility reason, otherwise disabled
     - "587:587"   # Submission STARTTLS - Optional - For webmails/desktop clients
     - "993:993"   # IMAPS      SSL/TLS  - Optional - For webmails/desktop clients
-  # - "995:995"   # POP3S      SSL/TLS  - Optional - For webmails/desktop clients
+    - "995:995"   # POP3S      SSL/TLS  - Optional - For webmails/desktop clients
     - "4190:4190" # SIEVE      STARTTLS - Optional - Recommended for mail filtering
   environment:
-    - DBPASS=xxxxxxx
+    DBPASS: ${db_passwd}
   # - ENABLE_POP3=true          # Enable POP3 protocol
   # - ENABLE_POSTGREY=true      # Enable greylisting policy server
   # - DISABLE_CLAMAV=true       # Disable virus scanning
@@ -40,7 +40,7 @@ postfixadmin:
   extra_hosts:
     - "mariadb:${db_host}"
   environment:
-    - DBPASS=${db_passwd}
+    DBPASS: ${db_passwd}
 
 # Webmail
 rainloop:
