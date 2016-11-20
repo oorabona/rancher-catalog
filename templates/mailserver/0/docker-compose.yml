@@ -5,6 +5,8 @@ mailserver:
   domainname: ${domain_name}                # Mail server FQDN & reverse = mail.domain.tld.
   hostname: mail
   labels:
+    io.rancher.container.network: true
+    io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: ${affinity}
   extra_hosts:
     - "mariadb:${db_host}"
@@ -36,6 +38,9 @@ postfixadmin:
   container_name: postfixadmin
   domainname: ${domain_name}
   hostname: mail
+  labels:
+    io.rancher.container.network: true
+    io.rancher.container.hostname_override: container_name
   links:
     - mailserver:mailserver
   extra_hosts:
@@ -48,6 +53,9 @@ rainloop:
   restart: always
   image: hardware/rainloop
   container_name: rainloop
+  labels:
+    io.rancher.container.network: true
+    io.rancher.container.hostname_override: container_name
   environment:
     VIRTUAL_HOST: ${rainloop_fqdn}
     VIRTUAL_PORT: 8000
