@@ -61,7 +61,7 @@ catalog:
       default: "local"
       required: true
 services:
-  nginx-lb:
+  lb:
     scale: 1
     lb_config:
       certs: []
