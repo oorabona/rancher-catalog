@@ -1,3 +1,4 @@
+version: '2'
 nginx-rp:
   image: oorabona/nginx-rancher-rp:${NGINX_VERSION}
   labels:
