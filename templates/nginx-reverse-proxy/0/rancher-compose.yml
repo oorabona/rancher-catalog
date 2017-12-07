@@ -20,12 +20,6 @@ catalog:
     #   type: "string"
     #   required: true
     #   default: "/srv"
-    - variable: affinity
-      label: "Rancher scheduler affinity, based on hosts labels!"
-      description: "Can be any key=value pair..."
-      type: "string"
-      required: true
-      default: "fq.label=value"
     - variable: rancher_host
       label: "Rancher Server Hostname"
       description: "External URL (FQDN or IP) of Rancher host."

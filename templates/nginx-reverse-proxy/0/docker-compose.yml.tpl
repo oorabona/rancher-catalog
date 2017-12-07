@@ -5,7 +5,6 @@ services:
     labels:
       io.rancher.container.network: true
       io.rancher.container.hostname_override: container_name
-      io.rancher.scheduler.affinity:host_label: ${affinity}
     environment:
       RANCHER_METADATA_HOST: ${rancher_host}
       IP_FIELD: ${ip_field_policy}
