@@ -9,7 +9,7 @@ services:
       RANCHER_METADATA_HOST: ${rancher_host}
       IP_FIELD: ${ip_field_policy}
     ports:
-     - "80:80"
+#      - "80:80"
     volumes:
       - nginx-conf:/etc/nginx
   #    - '${base_dir}/certs:/etc/nginx/certs:ro'

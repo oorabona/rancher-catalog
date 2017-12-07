@@ -25,7 +25,7 @@ catalog:
       description: "External URL (FQDN or IP) of Rancher host."
       type: "string"
       required: true
-      default: "http://rancher.lan:8080"
+      default: "http://rancher-metadata"
     - variable: ip_field_policy
       label: "Select which field in data.fields metadata should be the correct IP to forward to."
       description: "Select among the supported possibilities"
