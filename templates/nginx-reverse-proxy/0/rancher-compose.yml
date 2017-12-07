@@ -1,14 +1,25 @@
-.catalog:
+version: '2'
+catalog:
   name: "nginx-reverse-proxy"
   version: "latest-custom"
   description: "Automatic reverse proxy for your Web containers deployed in Rancher"
   questions:
-    - variable: base_dir
-      description: "Base directory for configuration files."
-      label: "Base directory"
-      type: "string"
+    - variable: "NGINX_VERSION"
+      label: "Version"
+      description: |
+        Select the NGiNX server version.
       required: true
-      default: "/srv"
+      default: "stable"
+      type: enum
+      options:
+        - stable
+        - latest
+    # - variable: base_dir
+    #   description: "Base directory for configuration files."
+    #   label: "Base directory"
+    #   type: "string"
+    #   required: true
+    #   default: "/srv"
     - variable: affinity
       label: "Rancher scheduler affinity, based on hosts labels!"
       description: "Can be any key=value pair..."
@@ -17,15 +28,61 @@
       default: "fq.label=value"
     - variable: rancher_host
       label: "Rancher Server Hostname"
-      description: "URL of Rancher host"
+      description: "External URL (FQDN or IP) of Rancher host."
       type: "string"
       required: true
-      default: "http://rancher-metadata:8080"
+      default: "http://rancher.lan:8080"
     - variable: ip_field_policy
-      label: "Select which field in data.fields metadata should be the source of remote IP"
+      label: "Select which field in data.fields metadata should be the correct IP to forward to."
       description: "Select among the supported possibilities"
       type: "enum"
       default: primaryIpAddress
       options:
         - dockerIp
         - primaryIpAddress
+    - variable: "SSL_CERT"
+      description: "Select SSL certificate."
+      label: "SSL certificate:"
+      required: true
+      default: ""
+      type: "certificate"
+    - variable: "CONF_VOLUME_DRIVER"
+      type: "string"
+      label: "Volume driver for NGiNX configuration files"
+      description: |
+        Specifiy docker volume driver to use
+      default: "local"
+      required: true
+    - variable: "HTML_VOLUME_DRIVER"
+      type: "string"
+      label: "Volume driver for NGiNX HTML files"
+      description: |
+        Specifiy docker volume driver to use
+      default: "local"
+      required: true
+services:
+  nginx-lb:
+    scale: 1
+    lb_config:
+      certs: []
+      default_cert: ${SSL_CERT}
+      port_rules:
+      - protocol: https
+        service: nginx-rp
+        source_port: 443
+        target_port: 443
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+  nginx-rp:
+    scale: 1
+    retain_ip: true
+    health_check:
+      port: 80
+      interval: 5000
+      unhealthy_threshold: 3
+      request_line: 'GET / HTTP/1.0'
+      healthy_threshold: 2
+      response_timeout: 5000
