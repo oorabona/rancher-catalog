@@ -6,7 +6,7 @@ services:
       io.rancher.container.network: true
       io.rancher.container.hostname_override: container_name
     environment:
-      RANCHER_METADATA_HOST: ${rancher_host}
+      RANCHER_VERSION: ${rancher_version}
       IP_FIELD: ${ip_field_policy}
 #    ports:
 #      - "80:80"
