@@ -14,7 +14,7 @@ services:
     volumes:
       - nginx-conf:/etc/nginx
   #    - '${base_dir}/certs:/etc/nginx/certs:ro'
-      - nginx-html:/nginx/html:/usr/share/nginx/html'
+      - nginx-html:/usr/share/nginx/html'
 
   lb:
     image: rancher/lb-service-haproxy
