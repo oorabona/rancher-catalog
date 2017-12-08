@@ -59,29 +59,29 @@ catalog:
         Specifiy docker volume driver to use
       default: "local"
       required: true
-services:
-  lb:
-    scale: 1
-    lb_config:
-      certs: []
-      default_cert: ${SSL_CERT}
-      port_rules:
-      - protocol: https
-        service: nginx-rp
-        source_port: 443
-        target_port: 443
-    health_check:
-      response_timeout: 2000
-      healthy_threshold: 2
-      port: 42
-      unhealthy_threshold: 3
-  nginx-rp:
-    scale: 1
-    retain_ip: true
-    health_check:
-      port: 80
-      interval: 5000
-      unhealthy_threshold: 3
-      request_line: 'GET / HTTP/1.0'
-      healthy_threshold: 2
-      response_timeout: 5000
+# services:
+  # lb:
+  #   scale: 1
+  #   lb_config:
+  #     certs: []
+  #     default_cert: ${SSL_CERT}
+  #     port_rules:
+  #     - protocol: https
+  #       service: nginx-rp
+  #       source_port: 443
+  #       target_port: 443
+  #   health_check:
+  #     response_timeout: 2000
+  #     healthy_threshold: 2
+  #     port: 42
+  #     unhealthy_threshold: 3
+  # nginx-rp:
+  #   scale: 1
+  #   retain_ip: true
+  #   health_check:
+  #     port: 80
+  #     interval: 5000
+  #     unhealthy_threshold: 3
+  #     request_line: 'GET / HTTP/1.0'
+  #     healthy_threshold: 2
+  #     response_timeout: 5000
