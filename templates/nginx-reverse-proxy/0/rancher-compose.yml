@@ -35,10 +35,10 @@ catalog:
       label: "Select which field in data.fields metadata should be the correct IP to forward to."
       description: "Select among the supported possibilities"
       type: "enum"
-      default: primaryIpAddress
+      default: ips
       options:
         - dockerIp
-        - primaryIpAddress
+        - ips
     - variable: "SSL_CERT"
       description: "Select SSL certificate."
       label: "SSL certificate:"
