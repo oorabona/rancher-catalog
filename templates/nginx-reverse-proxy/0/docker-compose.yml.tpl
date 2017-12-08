@@ -5,7 +5,7 @@ services:
     labels:
       io.rancher.container.network: true
       io.rancher.container.hostname_override: container_name
-      io.rancher.scheduler.global: 'true'
+#      io.rancher.scheduler.global: 'true'
       io.rancher.service.selector.link: web_rp=true
     environment:
       RANCHER_VERSION: ${rancher_version}
