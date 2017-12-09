@@ -9,7 +9,17 @@ services:
       io.rancher.service.selector.link: web_rp=true
     environment:
       RANCHER_VERSION: ${rancher_version}
-      IP_FIELD: ${ip_field_policy}
+      CRON: ${CRON}
+{{- if eq .Values.MONGODB_SERVICE ""}}
+      MONGODB_URL: mongodb:27017
+    links:
+      - mongodb
+{{- else}}
+      MONGODB_URL: mongodb:27017
+    external_links:
+      - ${MONGODB_SERVICE}:mongodb
+{{- end}}
+
 #    ports:
 #      - "80:80"
     volumes:
@@ -17,10 +27,16 @@ services:
   #    - '${base_dir}/certs:/etc/nginx/certs:ro'
       - nginx-html:/usr/share/nginx/html'
 
-  lb:
-    image: rancher/lb-service-haproxy
-    ports:
-    - 443
+#  lb:
+#    image: rancher/lb-service-haproxy
+#    ports:
+#    - 443
+
+{{- if eq .Values.MONGODB_SERVICE ""}}
+  mongodb:
+    image: mongo:3
+{{- end}}
+
 volumes:
   nginx-conf:
     driver: ${CONF_VOLUME_DRIVER}

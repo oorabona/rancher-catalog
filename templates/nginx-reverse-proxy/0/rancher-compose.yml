@@ -31,14 +31,18 @@ catalog:
         - 2016-07-29
         - latest
       default: "latest"
-    - variable: ip_field_policy
-      label: "Select which field in data.fields metadata should be the correct IP to forward to."
-      description: "Select among the supported possibilities"
-      type: "enum"
-      default: ips
-      options:
-        - dockerIp
-        - ips
+    - variable: CRON
+      label: "Scheduling of updates (see later.js docs)"
+      description: "Only textual representation accepted !"
+      required: true
+      default: "every 30 sec"
+      type: "string"
+    - variable: MONGODB_SERVICE
+      label: "MongoDB stack/service"
+      description: "MongoDB service link (MongoDB will be installed as part of this stack if empty)"
+      type: "service"
+      default: ""
+      required: false
     - variable: "SSL_CERT"
       description: "Select SSL certificate."
       label: "SSL certificate:"
