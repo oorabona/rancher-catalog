@@ -4,7 +4,7 @@ services:
     image: alpine:latest
     stdin_open: true
     volumes:
-{{- if eq .Values.has_driver}}
+{{- if eq .Values.has_driver "true"}}
       - nginx-conf:/etc/nginx
       - nginx-html:/usr/share/nginx/html
 {{- else}}
