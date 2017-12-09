@@ -33,7 +33,7 @@ services:
     volumes:
 {{- if eq .Values.has_driver}}
       - nginx-conf:/etc/nginx
-      - nginx-html:/usr/share/nginx/html'
+      - nginx-html:/usr/share/nginx/html
 {{- else}}
       - /etc/nginx
       - /usr/share/nginx/html
