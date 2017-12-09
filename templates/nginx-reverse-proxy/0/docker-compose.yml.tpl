@@ -52,7 +52,7 @@ services:
 {{- if eq .Values.has_driver}}
 volumes:
   nginx-conf:
-    driver: ${CONF_VOLUME_DRIVER}
+    driver: ${VOLUME_DRIVER}
   nginx-html:
-    driver: ${HTML_VOLUME_DRIVER}
+    driver: ${VOLUME_DRIVER}
 {{- end}}

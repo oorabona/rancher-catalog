@@ -49,20 +49,6 @@ catalog:
       required: true
       default: ""
       type: "certificate"
-    - variable: "CONF_VOLUME_DRIVER"
-      type: "string"
-      label: "Volume driver for NGiNX configuration files"
-      description: |
-        Specifiy docker volume driver to use
-      default: "local"
-      required: true
-    - variable: "HTML_VOLUME_DRIVER"
-      type: "string"
-      label: "Volume driver for NGiNX HTML files"
-      description: |
-        Specifiy docker volume driver to use
-      default: "local"
-      required: true
     - variable: has_driver
       type: boolean
       label: "Do you want to use volume driver ?"
@@ -74,6 +60,13 @@ catalog:
       label: "Do you want to make NGiNX Reverse Proxy a global service ?"
       description: "If so, it will be deployed in every host of this environment."
       default: true
+      required: true
+    - variable: "VOLUME_DRIVER"
+      type: "string"
+      label: "Volume driver for NGiNX files"
+      description: |
+        Specifiy docker volume driver to use
+      default: "local"
       required: true
 # services:
   # lb:
