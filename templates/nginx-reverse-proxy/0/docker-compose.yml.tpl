@@ -37,6 +37,7 @@ services:
       RANCHER_VERSION: ${rancher_version}
       CRON: ${CRON}
       MONGODB_URL: mongodb:27017
+      MONGODB_NAME: ${MONGODB_NAME}
 {{- if ne .Values.MONGODB_SERVICE ""}}
     external_links:
       - ${MONGODB_SERVICE}:mongodb

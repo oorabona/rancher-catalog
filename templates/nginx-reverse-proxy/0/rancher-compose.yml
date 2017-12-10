@@ -37,12 +37,16 @@ catalog:
       required: true
       default: "every 30 sec"
       type: "string"
-    - variable: MONGODB_SERVICE
+    - variable: "MONGODB_SERVICE"
       label: "MongoDB stack/service"
       description: "MongoDB service link (MongoDB will be installed as part of this stack if empty)"
       type: "service"
       default: ""
       required: false
+    - variable: "MONGODB_NAME"
+      label: "MongoDB database name"
+      type: "string"
+      default: "nginx-rancher-rp"
     - variable: "SSL_CERT"
       description: "Select SSL certificate."
       label: "SSL certificate:"
