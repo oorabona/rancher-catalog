@@ -37,7 +37,7 @@ catalog:
       required: true
       default: "every 30 sec"
       type: "string"
-    - variable: "MONGODB_SERVICE"
+    - variable: "mongodb_link"
       label: "MongoDB stack/service"
       description: "MongoDB service link (MongoDB will be installed as part of this stack if empty)"
       type: "service"

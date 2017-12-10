@@ -3,8 +3,11 @@ services:
   nginx-rp-data:
     image: alpine:latest
     stdin_open: true
+    entrypoint: /bin/true
     labels:
       io.rancher.container.start_once: true
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     volumes:
 {{- if eq .Values.has_driver "true"}}
       - nginx-conf:/etc/nginx
@@ -24,10 +27,7 @@ services:
       io.rancher.service.selector.link: nginx_rp=true
       io.rancher.sidekicks: nginx-rp-data
     ports:
-{{- if eq .Values.want_haproxy "true"}}
-      - 80
-      - 443
-{{- else}}
+{{- if ne .Values.want_haproxy "true"}}
       - 80:80
       - 443:443
 {{- end}}
@@ -38,9 +38,9 @@ services:
       CRON: ${CRON}
       MONGODB_URL: mongodb:27017
       MONGODB_NAME: ${MONGODB_NAME}
-{{- if ne .Values.MONGODB_SERVICE ""}}
+{{- if ne .Values.mongodb_link ""}}
     external_links:
-      - ${MONGODB_SERVICE}:mongodb
+      - ${mongodb_link}:mongodb
 {{- else}}
     links:
       - mongodb:mongodb
