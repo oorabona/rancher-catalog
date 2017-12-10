@@ -24,8 +24,13 @@ services:
       io.rancher.service.selector.link: nginx_rp=true
       io.rancher.sidekicks: nginx-rp-data
     ports:
+{{- if eq .Values.want_haproxy "true"}}
       - 80
       - 443
+{{- else}}
+      - 80:80
+      - 443:443
+{{- end}}
     volumes_from:
       - nginx-rp-data
     environment:
@@ -43,10 +48,12 @@ services:
     image: mongo:3
 {{- end}}
 
+{{- if eq .Values.want_haproxy "true"}}
 #  lb:
 #    image: rancher/lb-service-haproxy
 #    ports:
 #    - 443
+{{- end}}
 
 {{- if eq .Values.has_driver}}
 volumes:
