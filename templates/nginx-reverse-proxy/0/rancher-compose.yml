@@ -20,7 +20,7 @@ catalog:
     #   type: "string"
     #   required: true
     #   default: "/srv"
-    - variable: rancher_version
+    - variable: rancher_api_version
       label: "Rancher Server version"
       description: "Version of Rancher Metadata API to request."
       type: "enum"

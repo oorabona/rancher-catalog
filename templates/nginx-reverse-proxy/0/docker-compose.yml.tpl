@@ -34,7 +34,7 @@ services:
     volumes_from:
       - nginx-rp-data
     environment:
-      RANCHER_VERSION: ${rancher_version}
+      RANCHER_VERSION: ${rancher_api_version}
       CRON: ${CRON}
       MONGODB_URL: mongodb:27017
       MONGODB_NAME: ${MONGODB_NAME}
