@@ -3,6 +3,8 @@ services:
   nginx-rp-data:
     image: alpine:latest
     stdin_open: true
+    labels:
+      io.rancher.container.start_once: true
     volumes:
 {{- if eq .Values.has_driver "true"}}
       - nginx-conf:/etc/nginx
@@ -21,21 +23,21 @@ services:
       io.rancher.scheduler.global: ${want_global}
       io.rancher.service.selector.link: nginx_rp=true
       io.rancher.sidekicks: nginx-rp-data
-#    ports:
-#      - "80:80"
+    ports:
+      - 80
+      - 443
     volumes_from:
       - nginx-rp-data
     environment:
       RANCHER_VERSION: ${rancher_version}
       CRON: ${CRON}
-{{- if ne .Values.MONGODB_SERVICE ""}}
       MONGODB_URL: mongodb:27017
+{{- if ne .Values.MONGODB_SERVICE ""}}
     external_links:
       - ${MONGODB_SERVICE}:mongodb
 {{- else}}
-      MONGODB_URL: mongodb:27017
     links:
-      - mongodb
+      - mongodb:mongodb
 
   mongodb:
     image: mongo:3
