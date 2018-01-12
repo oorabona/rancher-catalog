@@ -7,8 +7,8 @@ services:
       io.rancher.container.network: true
       io.rancher.container.hostname_override: container_name
       io.rancher.service.selector.link: nginx_rp=true
-    ports:
 {{- if ne .Values.want_haproxy "true"}}
+    ports:
       - 80:8080
 {{- end}}
     environment:
