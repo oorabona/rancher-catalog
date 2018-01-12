@@ -1,0 +1,84 @@
+version: '2'
+catalog:
+  name: "imgproxy"
+  version: "latest-custom"
+  description: "Fast and secure standalone server for resizing and converting remote images"
+  questions:
+    - variable: want_serve_local
+      type: boolean
+      label: "Do you want to serve local files with imgproxy ?"
+      description: "If so, please set the local filesystem root."
+      default: true
+      required: true
+    - variable: "IMGPROXY_LOCAL_FILESYSTEM_ROOT"
+      label: "Image Proxy Local Filesystem Root"
+      description: "Set here the filesystem root path to look for images."
+      required: false
+      default: "/home/images"
+      type: "string"
+    - variable: want_haproxy
+      type: boolean
+      label: "Do you want to have ImgProxy behind HAProxy load balancer ?"
+      description: "If so you might want to set up SSL termination using one of your registered CERTS."
+      default: false
+      required: true
+    - variable: "SSL_CERT"
+      description: "Select SSL certificate."
+      label: "SSL certificate:"
+      required: false
+      default: ""
+      type: "certificate"
+    - variable: use_keyfiles
+      type: boolean
+      label: "Do you want to use files for key/salt ?"
+      description: "If so, please set the host path where to find these keyfiles. If not please fill the KEY/SALT here!"
+      default: false
+      required: true
+    - variable: "KEYSALT_PATH"
+      type: "string"
+      label: "Path where to find key/salt files."
+      description: "Required only if you want to use files to store key/salt values."
+      default: "/srv"
+      required: false
+    - variable: "IMGPROXY_KEY"
+      label: "Image Proxy Key (see docs)"
+      description: "Set here your application proxy key (xxd -g 2 -l 64 -p /dev/random | tr -d '\n')."
+      required: false
+      type: "string"
+    - variable: "IMGPROXY_SALT"
+      label: "Image Proxy Salt (see docs)"
+      description: "Set here your application proxy salt (xxd -g 2 -l 64 -p /dev/random | tr -d '\n')."
+      required: false
+      type: "string"
+    - variable: "IMGPROXY_TTL"
+      label: "Image Proxy TTL for cache (see docs)"
+      description: "Duration in seconds sent in Expires and Cache-Control: max-age headers. Default: 3600 (1 hour)"
+      required: true
+      type: "int"
+      default: 3600
+# services:
+  # lb:
+  #   scale: 1
+  #   lb_config:
+  #     certs: []
+  #     default_cert: ${SSL_CERT}
+  #     port_rules:
+  #     - protocol: https
+  #       service: nginx-rp
+  #       source_port: 443
+  #       target_port: 443
+  #   health_check:
+  #     response_timeout: 2000
+  #     healthy_threshold: 2
+  #     port: 42
+  #     unhealthy_threshold: 3
+  # nginx-rp:
+  #   scale: 1
+  #   retain_ip: true
+  #   health_check:
+  #     port: 80
+  #     interval: 5000
+  #     unhealthy_threshold: 3
+  #     request_line: 'GET / HTTP/1.0'
+  #     healthy_threshold: 2
+  #     response_timeout: 5000

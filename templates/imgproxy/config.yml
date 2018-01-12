@@ -1,0 +1,8 @@
+name: ImgProxy
+description: |
+  Fast and secure standalone server for resizing and converting remote images
+version: latest-custom
+category: Server
+maintainer: Olivier ORABONA (olivier.orabona@gmail.com)
+# license: MIT
+# projectURL: https://github.com/oorabona/nginx-rancher-rp
