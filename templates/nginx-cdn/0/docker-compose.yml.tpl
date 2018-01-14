@@ -1,6 +1,6 @@
 version: '2'
 services:
-  nginx-cdn-onfig:
+  nginx-cdn-config:
     restart: always
     image: oorabona/nginx-cdn-config:v0.1.0
     volumes:
