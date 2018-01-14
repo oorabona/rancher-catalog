@@ -20,4 +20,4 @@ services:
     ports:
       - 80/tcp
     volumes_from:
-      - nginx-config
+      - nginx-cdn-config
