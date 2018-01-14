@@ -18,6 +18,6 @@ services:
       io.rancher.scheduler.global: ${want_global}
       io.rancher.scheduler.affinity:host_label: ${affinity}
     ports:
-      - 80/tcp
+      - 80:80/tcp
     volumes_from:
       - nginx-cdn-config
