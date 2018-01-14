@@ -1,0 +1,8 @@
+name: NGiNX CDN
+description: |
+  Fast and secure standalone NGiNX to server static files (CDN-like)
+version: latest-custom
+category: Server
+maintainer: Olivier ORABONA (olivier.orabona@gmail.com)
+license: MIT
+projectURL: https://github.com/oorabona/rancher-catalog.git
