@@ -140,8 +140,10 @@ catalog:
         #    Protects the readme.html|license.txt files from being accessed
         #    (for wordpress installations)
           location ~ /(\.|readme.html|license.txt) { deny all; }
-nginx-cdn:
+service:
   metadata:
     nginx:
-      cdn: ${CDN_CONFIG_FILE}
-      server: ${SERVER_CONFIG_FILE}
+      cdn: |
+        ${CDN_CONFIG_FILE}
+      server: |
+        ${SERVER_CONFIG_FILE}
