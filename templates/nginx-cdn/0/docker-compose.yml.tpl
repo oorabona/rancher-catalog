@@ -13,7 +13,6 @@ services:
     labels:
       io.rancher.sidekicks: nginx-cdn-config
       io.rancher.container.pull_image: always
-      io.rancher.container.network: true
       io.rancher.container.hostname_override: container_name
 {{- if eq .Values.want_global "true"}}
       io.rancher.scheduler.global: ${want_global}
