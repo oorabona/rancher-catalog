@@ -1,5 +1,4 @@
-version: '2'
-catalog:
+.catalog:
   name: "nginx-cdn"
   version: "latest-custom"
   description: "Fast and secure standalone NGiNX to server static files (CDN-like)"
@@ -22,8 +21,8 @@ catalog:
       type: "string"
       required: true
       default: "/home/assets"
-    - variable: "SERVER_CONFIG_FILE"
-      type: multiline
+    - variable: server_config_file
+      type: "multiline"
       label: "NGiNX server config file"
       description: "Default configuration for multi domain CDN. Change at your own risk!"
       required: true
@@ -43,8 +42,8 @@ catalog:
 
             include conf.d/cdn.conf;
         }
-    - variable: "CDN_CONFIG_FILE"
-      type: multiline
+    - variable: cdn_config_file
+      type: "multiline"
       label: "NGiNX CDN config file"
       description: "Default CDN configuration file, you can tweak it if you know what you are doing."
       required: true
@@ -135,10 +134,10 @@ catalog:
         #    Protects the readme.html|license.txt files from being accessed
         #    (for wordpress installations)
           location ~ /(\.|readme.html|license.txt) { deny all; }
-nginx-cdn-config:
+nginx-cdn:
   metadata:
     nginx:
       cdn: |
-        ${CDN_CONFIG_FILE}
+        ${cdn_config_file}
       server: |
-        ${SERVER_CONFIG_FILE}
+        ${server_config_file}

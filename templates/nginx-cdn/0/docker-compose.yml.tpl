@@ -1,17 +1,17 @@
 version: '2'
 services:
-  nginx-cdn-config:
+  nginx-cdn:
     restart: always
     image: oorabona/nginx-cdn-config:v0.1.0
     volumes:
       - ${base_dir}:/var/www:ro
     labels:
       io.rancher.container.hostname_override: container_name
-  nginx-cdn:
+  nginx:
     restart: always
     image: nginx:latest
     labels:
-      io.rancher.sidekicks: nginx-cdn-config
+      io.rancher.sidekicks: nginx-cdn
       io.rancher.container.pull_image: always
       io.rancher.container.hostname_override: container_name
 {{- if eq .Values.want_global "true"}}
@@ -22,4 +22,4 @@ services:
     ports:
       - 80:80
     volumes_from:
-      - nginx-cdn-config
+      - nginx-cdn
