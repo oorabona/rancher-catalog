@@ -28,114 +28,14 @@ catalog:
       label: "NGiNX server config file"
       description: "Default configuration for multi domain CDN. Change at your own risk!"
       required: true
-      default: |
-        server {
-            listen   80;
-            listen   [::]:80;
-
-            server_name ~^cdn.(?<domain>.+)$;
-
-            set $parent_site www.$domain;
-
-            access_log /var/log/nginx/$host.access.log;
-            error_log  /var/log/nginx/error.log;
-
-            root /var/www/$domain/;
-
-            include conf.d/cdn.conf;
-        }
+      default: ""
     - variable: cdn_config_file
       type: "multiline"
       label: "NGiNX CDN config file"
       description: "Default CDN configuration file, you can tweak it if you know what you are doing."
       required: true
-      default: |
-        # -------------------------------------------------
-        # CDN CONFIGURATION
-        # -------------------------------------------------
+      default: ""
 
-        #    Show "Not Found" 404 errors in place of other NGINX errors
-          error_page 403 /404;
-          error_page 404 /404;
-          error_page 405 /404;
-          error_page 500 501 502 503 504 /404;
-        #  location  /404 {
-        #    return 301 /$parent_site/404/;
-        #  }
-        #    Prevent access to any files starting with a dot, like .htaccess
-        #    or text editor temp files
-          location ~ /\. { deny all; }
-
-        #    Prevent access to any files starting with a $ (usually temp files)
-          location ~ ~$ { deny all; }
-
-        #    Prevent access to php files
-          location ~ \.php$ { deny all; }
-
-        #    Keep images and CSS and other static files around in browser cache for as long as possible,
-          location ~* .(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf|html|txt|htm)$ {
-            expires max;
-            log_not_found off;
-            access_log off;
-            add_header Cache-Control public;
-
-            # don't send cookies
-            fastcgi_hide_header Set-Cookie;
-
-            # CORS config
-            set $cors "true";
-
-            # Determine the HTTP request method used
-            if ($request_method = 'OPTIONS') {
-              set $cors "${cors}options";
-            }
-            if ($request_method = 'GET') {
-              set $cors "${cors}get";
-            }
-            if ($request_method = 'POST') {
-              set $cors "${cors}post";
-            }
-            if ($cors = "true") {
-              # Catch all incase there's a request method we're not dealing with properly
-              add_header 'Access-Control-Allow-Origin' '*';
-            }
-
-            if ($cors = "trueget") {
-              add_header 'Access-Control-Allow-Origin' '*';
-              add_header 'Access-Control-Allow-Credentials' 'true';
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-              add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-            }
-
-            if ($cors = "trueoptions") {
-              add_header 'Access-Control-Allow-Origin' '*';
-
-              # Om nom nom cookies
-              add_header 'Access-Control-Allow-Credentials' 'true';
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-
-              # Custom headers and headers various browsers *should* be OK with but aren't
-              add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-
-              # Tell client that this pre-flight info is valid for 20 days
-              add_header 'Access-Control-Max-Age' 1728000;
-              add_header 'Content-Type' 'text/plain charset=UTF-8';
-              add_header 'Content-Length' 0;
-              return 204;
-            }
-
-            if ($cors = "truepost") {
-              add_header 'Access-Control-Allow-Origin' '*';
-              add_header 'Access-Control-Allow-Credentials' 'true';
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-              add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-
-            }
-          }
-
-        #    Protects the readme.html|license.txt files from being accessed
-        #    (for wordpress installations)
-          location ~ /(\.|readme.html|license.txt) { deny all; }
 services:
   nginx-cdn:
     metadata:
