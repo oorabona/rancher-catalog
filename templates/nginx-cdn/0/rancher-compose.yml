@@ -29,23 +29,18 @@ catalog:
       required: true
       default: |
         server {
-            listen   80; ## listen for ipv4
-            listen   [::]:80; ## listen for ipv6
+            listen   80;
+            listen   [::]:80;
 
-            # Change following line if you are not looking for multiple cdn.<domain>.<tld>
             server_name ~^cdn.(?<domain>.+)$;
 
-            # The following line shall remain ($domain might be changed if you have changed above line)
             set $parent_site www.$domain;
 
-            # Tweak the following 2 lines if you want to customize logs.
             access_log /var/log/nginx/$host.access.log;
             error_log  /var/log/nginx/error.log;
 
-            # Root directory with assets, you can use a variable or have it static
             root /var/www/$domain/;
 
-            # DO NOT REMOVE THIS LINE !!!
             include conf.d/cdn.conf;
         }
     - variable: "CDN_CONFIG_FILE"
