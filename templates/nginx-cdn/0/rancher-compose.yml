@@ -1,4 +1,5 @@
-.catalog:
+version: '2'
+catalog:
   name: "nginx-cdn"
   version: "latest-custom"
   description: "Fast and secure standalone NGiNX to server static files (CDN-like)"
@@ -9,9 +10,10 @@
       description: "If so, it will be deployed in every host of this environment."
       default: false
       required: true
-    - variable: affinity
-      label: "Rancher scheduler affinity, based on hosts labels MUST !"
-      description: "Can be any key=value pair... Only needed if not installed as a global service."
+    - variable: host_label
+      label: "Host with Label to deploy CDN on"
+      description: |
+        Host label to use as nginx-cdn 'value' tag.
       type: "string"
       required: true
       default: "cdn=true"
@@ -134,10 +136,11 @@
         #    Protects the readme.html|license.txt files from being accessed
         #    (for wordpress installations)
           location ~ /(\.|readme.html|license.txt) { deny all; }
-nginx-cdn:
-  metadata:
-    nginx:
-      cdn: |
-        ${cdn_config_file}
-      server: |
-        ${server_config_file}
+services:
+  nginx-cdn:
+    metadata:
+      nginx:
+        cdn: |
+          ${cdn_config_file}
+        server: |
+          ${server_config_file}

@@ -17,7 +17,7 @@ services:
 {{- if eq .Values.want_global "true"}}
       io.rancher.scheduler.global: ${want_global}
 {{- else}}
-      io.rancher.scheduler.affinity:host_label: ${affinity}
+      io.rancher.scheduler.affinity:host_label: ${host_label}
 {{- end}}
     ports:
       - 80:80
